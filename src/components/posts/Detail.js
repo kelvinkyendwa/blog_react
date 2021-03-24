@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Button } from "antd";
+import { Card } from 'antd';
 import axios from "axios";
+import './Detail.css';
 
 class PostDetail extends Component {
 	constructor(props) {
@@ -31,18 +33,16 @@ class PostDetail extends Component {
 		this.postId = this.props.match.params.id;
 		let post = this.state.post;
 		return (
-			<div>
-				<h1>Post Detail</h1>
+			<div className="Detail">
+				<Card title={post.title} bordered={false} style={{ width: 300 }}>
+					<p>{post.description}</p>
+					<Button
+						type="success"
+						style={{ marginLeft: 8 }}
+						onClick={this.handleBack}
+					>Go Back </Button>
+				</Card>
 				<h5>This is post with id:{this.postId}</h5>
-				<p>title {post.title}</p>
-				<p>description {post.description}</p>
-				<Button
-					type="success"
-					style={{ marginLeft: 8 }}
-					onClick={this.handleBack}
-				>
-					Go back
-				</Button>
 			</div>
 		);
 	}
